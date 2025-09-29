@@ -114,14 +114,13 @@ ISBN             Title                      Author           Publisher   Year
 978-1122334455   Cybersecurity Essentials   Alice Smith                  2021
 
 
-``
-## SQL
+```
 
 insert into books (ISBN,Title,Author,Publisher,Year) values ('978-1234567890','Introduction to AI','John Doe',Null,null);
 insert into books (ISBN,Title,Author,Publisher,Year) values ('978-9876543210','Deep Learning','Jane Doe','TechPress','2022');
 insert into books (ISBN,Title,Author,Publisher,Year) values ('978-1122334455','Cybersecurity Essentials','Alice Smith',null,'2021');
 
-``
+```
 
 **Output:**
 
@@ -142,12 +141,11 @@ ProductID   Name        Category     Price       Stock
 ----------  ----------  -----------  ----------  ----------
 104         Tablet      Electronics  100         50
 
-`` 
-## SQL
+```
 
 insert into products (ProductID,Name,Category,Price,Stock) values (104, 'Tablet' ,'Electronics',100,50);
 
-``
+```
 
 **Output:**
 
@@ -175,9 +173,7 @@ discount is greater than or equal to 0
 
 list_price is greater than or equal to 0
 
-``
-
-## SQL
+```
 
 create table products (
     product_id  integer primary key,
@@ -187,7 +183,7 @@ create table products (
     check (list_price >= 0)
 );
 
-``
+```
 
 **Output:**
 
@@ -210,13 +206,12 @@ RollN  Name   Gen  Subject     email
 1      John   M    Math        john@example.com
 
 
-``
-## SQL
+```
 
 alter table Student_details 
 add column email TEXT not null default 'Invalid';
 
-``
+```
 
 **Output:**
 
@@ -244,8 +239,7 @@ cid         name        type        notnull     dflt_value  pk
 
 
 
-``
-## SQL
+```
 
 create table Customers (
 CustomerID INTEGER,
@@ -254,7 +248,7 @@ Email TEXT,
 JoinDate DATETIME
 );
 
-``
+```
 
 **Output:**
 
@@ -278,13 +272,11 @@ ProductID   ProductName     Price       Stock
 103         Classic Tablet  149.99      5
 
 
-``
-
-## SQL
+```
 
 insert into products select * from Discontinued_products;
 
-``
+```
 
 **Output:**
 
@@ -306,7 +298,7 @@ cid         name        type        notnull     dflt_value  pk
 2           department  INTEGER     0                       0
 3           manager_id  INTEGER     0           NULL        0
 
-## SQL
+```
 
 alter table employee 
 add column department_id INTEGER;
@@ -314,6 +306,7 @@ add column department_id INTEGER;
 alter table employee
 add column manager_id INTEGER default NULL;
 
+```
 **Output:**
 
 <img width="1254" height="316" alt="image" src="https://github.com/user-attachments/assets/39fd095a-d594-42cb-85ef-81ed7819ade9" />
@@ -334,8 +327,7 @@ INSERT INTO Products
 VALUES (1, NULL,0,5);
 Error: NOT NULL constraint failed: Products.ProductName
 
-
-## SQL
+```
 
 create table Products (
 ProductID primary key,
@@ -343,6 +335,8 @@ ProductName NOT NULL,
 Price real check (Price>0),
 Stock integer check (Stock > 0)
 );
+
+```
 
 **Output:**
 
@@ -356,7 +350,7 @@ OrderID as INTEGER should be the primary key.
 OrderDate as DATE should be not NULL.
 CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
 
-## SQL
+```
 
 create table Orders (
 OrderID INTEGER primary key,
@@ -364,6 +358,8 @@ OrderDate DATE not NULL,
 CustomerID INTEGER,
 foreign key (CustomerID) references Customers(CustomerID)
 );
+
+```
 
 **Output:**
 
@@ -380,8 +376,7 @@ icom_id is a foreign key referencing com_id in the company table.
 The foreign key should cascade updates and deletes.
 item_desc and rate should not accept NULL.
 
-
-## SQL 
+```
 
 create table item (
 item_id TEXT primary key,
@@ -392,6 +387,8 @@ foreign key (icom_id) references company(com_id)
 on update cascade 
 on delete cascade
 );
+
+```
 
 
 **Output:**
