@@ -105,123 +105,298 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+In the Books table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 
-```sql
--- Paste your SQL code below for Question 1
-```
+ISBN             Title                      Author           Publisher   Year
+---------------  -------------------------  ---------------  ----------  ----------
+978-1234567890   Introduction to AI         John Doe
+978-9876543210   Deep Learning              Jane Doe         TechPress   2022
+978-1122334455   Cybersecurity Essentials   Alice Smith                  2021
+
+
+``
+## SQL
+
+insert into books (ISBN,Title,Author,Publisher,Year) values ('978-1234567890','Introduction to AI','John Doe',Null,null);
+insert into books (ISBN,Title,Author,Publisher,Year) values ('978-9876543210','Deep Learning','Jane Doe','TechPress','2022');
+insert into books (ISBN,Title,Author,Publisher,Year) values ('978-1122334455','Cybersecurity Essentials','Alice Smith',null,'2021');
+
+``
 
 **Output:**
 
-![Output1](output.png)
+<img width="1286" height="375" alt="image" src="https://github.com/user-attachments/assets/3dbb3f71-8ec8-4692-a64e-fb1c21f0b293" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Insert a product with ProductID 104, Name Tablet, and Category Electronics into the Products table, where Price and Stock should use default values.
 
-```sql
--- Paste your SQL code below for Question 2
-```
+For example:
+
+Test	Result
+SELECT ProductID, Name, Category, Price, Stock 
+FROM Products 
+WHERE ProductID = 104;
+ProductID   Name        Category     Price       Stock
+----------  ----------  -----------  ----------  ----------
+104         Tablet      Electronics  100         50
+
+`` 
+## SQL
+
+insert into products (ProductID,Name,Category,Price,Stock) values (104, 'Tablet' ,'Electronics',100,50);
+
+``
 
 **Output:**
 
-![Output2](output.png)
+<img width="1264" height="294" alt="image" src="https://github.com/user-attachments/assets/0ac2339f-510c-4d58-8996-adbfaa98c446" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
 
-```sql
--- Paste your SQL code below for Question 3
-```
+Create a new table named products with the following specifications:
+
+product_id as INTEGER and primary key.
+
+product_name as TEXT and not NULL.
+
+list_price as DECIMAL (10, 2) and not NULL.
+
+discount as DECIMAL (10, 2) with a default value of 0 and not NULL.
+
+A CHECK constraint at the table level to ensure:
+
+list_price is greater than or equal to discount
+
+discount is greater than or equal to 0
+
+list_price is greater than or equal to 0
+
+``
+
+## SQL
+
+create table products (
+    product_id  integer primary key,
+    product_name text not null,
+    list_price DECIMAL (10, 2) not NULL check (list_price>= discount),
+    discount DECIMAL (10, 2) default '0' not NULL check (discount >= 0)
+    check (list_price >= 0)
+);
+
+``
 
 **Output:**
 
-![Output3](output.png)
+<img width="1268" height="359" alt="image" src="https://github.com/user-attachments/assets/7d151675-86a8-400d-9a6e-0ee697de13bf" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
 
-```sql
--- Paste your SQL code below for Question 4
-```
+Write an SQL query to add a new column email of type TEXT to the Student_details table, and ensure that this column cannot contain NULL values and make default value as 'Invalid'
+
+For example:
+
+Test	Result
+INSERT INTO Student_details (RollNo, Name, Gender, Subject, email) 
+VALUES (1, 'John Doe', 'M', 'Math', 'john@example.com');
+select * from Student_details;
+RollN  Name   Gen  Subject     email
+-----  -----  ---  ----------  ----------------
+1      John   M    Math        john@example.com
+
+
+``
+## SQL
+
+alter table Student_details 
+add column email TEXT not null default 'Invalid';
+
+``
 
 **Output:**
 
-![Output4](output.png)
+<img width="1322" height="343" alt="image" src="https://github.com/user-attachments/assets/ac92e6db-c047-4fb2-911a-3233a19a2440" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Create a table named Customers with the following columns:
 
-```sql
--- Paste your SQL code below for Question 5
-```
+CustomerID as INTEGER
+Name as TEXT
+Email as TEXT
+JoinDate as DATETIME
+For example:
+
+Test	Result
+pragma table_info('Customers');
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           CustomerID  INTEGER     0                       0
+1           Name        TEXT        0                       0
+2           Email       TEXT        0                       0
+3           JoinDate    DATETIME    0                       0
+
+
+
+``
+## SQL
+
+create table Customers (
+CustomerID INTEGER,
+Name  TEXT,
+Email TEXT,
+JoinDate DATETIME
+);
+
+``
 
 **Output:**
 
-![Output5](output.png)
+<img width="1264" height="404" alt="image" src="https://github.com/user-attachments/assets/d4449200-dc93-4c47-bf1c-2e7728f25191" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Insert all products from Discontinued_products into Products.
 
-```sql
--- Paste your SQL code below for Question 6
-```
+Table attributes are ProductID, ProductName, Price, Stock
+
+For example:
+
+Test	Result
+select * from Products;
+ProductID   ProductName     Price       Stock
+----------  --------------  ----------  ----------
+101         Old Smartphone  199.99      0
+102         Vintage Laptop  399.99      10
+103         Classic Tablet  149.99      5
+
+
+``
+
+## SQL
+
+insert into products select * from Discontinued_products;
+
+``
 
 **Output:**
 
-![Output6](output.png)
+<img width="1268" height="277" alt="image" src="https://github.com/user-attachments/assets/2269adcc-04ae-42eb-95a9-f88720e4be9a" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write an SQL query to add two new columns, department_id and manager_id, to the table employee with datatype of INTEGER. The manager_id column should have a default value of NULL.
 
-```sql
--- Paste your SQL code below for Question 7
-```
+For example:
+
+Test	Result
+PRAGMA table_info(employee);
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           id          integer     0                       0
+1           salary      number      0                       0
+2           department  INTEGER     0                       0
+3           manager_id  INTEGER     0           NULL        0
+
+## SQL
+
+alter table employee 
+add column department_id INTEGER;
+
+alter table employee
+add column manager_id INTEGER default NULL;
 
 **Output:**
 
-![Output7](output.png)
+<img width="1254" height="316" alt="image" src="https://github.com/user-attachments/assets/39fd095a-d594-42cb-85ef-81ed7819ade9" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Create a table named Products with the following constraints:
 
-```sql
--- Paste your SQL code below for Question 8
-```
+ProductID should be the primary key.
+ProductName should be NOT NULL.
+Price is of real datatype and should be greater than 0.
+Stock is of integer datatype and should be greater than or equal to 0.
+For example:
+
+Test	Result
+INSERT INTO Products
+VALUES (1, NULL,0,5);
+Error: NOT NULL constraint failed: Products.ProductName
+
+
+## SQL
+
+create table Products (
+ProductID primary key,
+ProductName NOT NULL,
+Price real check (Price>0),
+Stock integer check (Stock > 0)
+);
 
 **Output:**
 
-![Output8](output.png)
+<img width="1276" height="286" alt="image" src="https://github.com/user-attachments/assets/42e2ef4c-3743-4519-829d-875277610393" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Create a table named Orders with the following constraints:
+OrderID as INTEGER should be the primary key.
+OrderDate as DATE should be not NULL.
+CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
 
-```sql
--- Paste your SQL code below for Question 9
-```
+## SQL
+
+create table Orders (
+OrderID INTEGER primary key,
+OrderDate DATE not NULL,
+CustomerID INTEGER,
+foreign key (CustomerID) references Customers(CustomerID)
+);
 
 **Output:**
 
-![Output9](output.png)
+<img width="1249" height="277" alt="image" src="https://github.com/user-attachments/assets/4e37162a-aed7-4bbc-8155-967a39760946" />
 
 **Question 10**
 ---
--- Paste Question 10 here
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should cascade updates and deletes.
+item_desc and rate should not accept NULL.
 
-```sql
--- Paste your SQL code below for Question 10
-```
+
+## SQL 
+
+create table item (
+item_id TEXT primary key,
+item_desc TEXT not NULL,
+rate INTEGER not NULL,
+icom_id TEXT (4),
+foreign key (icom_id) references company(com_id)
+on update cascade 
+on delete cascade
+);
+
 
 **Output:**
 
-![Output10](output.png)
+<img width="1262" height="356" alt="image" src="https://github.com/user-attachments/assets/69191682-2965-426f-984e-fc06be83a529" />
 
 
 ## RESULT
