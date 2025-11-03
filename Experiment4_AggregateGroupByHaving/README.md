@@ -38,123 +38,341 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+How many doctors specialize in each medical specialty?
+
+Sample table:Doctors Table
+
+
+
+For example:
+
+Result
+Specialty          TotalDocto
+-----------------  ----------
+Gastroenterology   1
+Neurology          1
+Obstetrics         3
+Ophthalmology      1
+Orthopedics        1
+Pediatrics         2
+Urology            1
+
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT 
+    Specialty, 
+    COUNT(*) AS TotalDoctors
+FROM 
+    Doctors
+GROUP BY 
+    Specialty;
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="848" height="639" alt="image" src="https://github.com/user-attachments/assets/d73d3942-3afb-47c4-a109-1788bea1134f" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+What is the average age of doctors in each medical specialty?
+
+Sample table:Doctors Table
+
+
+
+For example:
+
+Result
+Specialty          AvgAge
+-----------------  ----------
+Endocrinology      44.0
+Gastroenterology   39.0
+Neurology          41.0
+Obstetrics         53.0
+Pediatrics         48.0
+Urology            44.0
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT 
+  Specialty,
+  ROUND(AVG((julianday('now') - julianday(DateOfBirth)) / 365.25), 1) AS AvgAge
+FROM Doctors
+WHERE DateOfBirth IS NOT NULL
+GROUP BY Specialty
+ORDER BY Specialty;
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="922" height="716" alt="image" src="https://github.com/user-attachments/assets/056a2a65-7c2b-431d-af5b-39696e5e4024" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+How many patients are there in each age group category (e.g., under 20, 20-30, 30-40, etc.)?
+
+Sample table: Patients Table
+
+
+
+For example:
+
+Result
+AgeGroup    TotalPatients
+----------  -------------
+20-30       1
+31-40       5
+41-50       3
+Above 50    1
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT 
+  CASE
+    WHEN (strftime('%Y', 'now') - strftime('%Y', DateOfBirth)) < 20 THEN 'Under 20'
+    WHEN (strftime('%Y', 'now') - strftime('%Y', DateOfBirth)) BETWEEN 20 AND 30 THEN '20-30'
+    WHEN (strftime('%Y', 'now') - strftime('%Y', DateOfBirth)) BETWEEN 31 AND 40 THEN '31-40'
+    WHEN (strftime('%Y', 'now') - strftime('%Y', DateOfBirth)) BETWEEN 41 AND 50 THEN '41-50'
+    ELSE 'Above 50'
+  END AS AgeGroup,
+  COUNT(*) AS TotalPatients
+FROM Patients
+GROUP BY AgeGroup
+ORDER BY AgeGroup;
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="743" height="524" alt="image" src="https://github.com/user-attachments/assets/bb3fcb43-bcde-4e30-b8d4-aca913eb4a2e" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query to find the youngest employee in the company?
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+age         INTEGER
+city        TEXT
+income      INTEGER
+ 
+
+For example:
+
+Result
+Employee_Name  Age
+-------------  ----------
+Peter          32
+
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT name AS Employee_Name, age AS Age
+FROM employee
+ORDER BY age ASC
+LIMIT 1;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="710" height="363" alt="image" src="https://github.com/user-attachments/assets/08847276-9719-491a-a8c7-c275933000cf" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to return the total number of rows in the 'customer' table where the city is Noida.
+
+Sample table: customer
+
+
+
+ 
+
+For example:
+
+Result
+COUNT
+----------
+1
+
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT 
+    COUNT(*) AS COUNT
+FROM customer
+WHERE city = 'Noida';
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="551" height="392" alt="image" src="https://github.com/user-attachments/assets/5b566753-c7ff-48cc-b84c-f8e1022aa4ef" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to find the average length of names for people living in Chennai?
+
+Table: customer
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT   
+city        TEXT
+email       TEXT
+phone       INTEGER
+For example:
+
+Result
+avg_name_length
+---------------
+10.0
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT AVG(LENGTH(name)) AS avg_name_length
+FROM customer
+WHERE city = 'Chennai';
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="653" height="421" alt="image" src="https://github.com/user-attachments/assets/1b6f79a1-c0e4-4fb7-964a-a31f8e03fc5c" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to find the shortest email address in the customer table?
+
+Table: customer
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT   
+city        TEXT
+email       TEXT
+phone       INTEGER
+For example:
+
+Result
+name        email           min_email_length
+----------  --------------  ----------------
+Ravi Kumar  ravi@gmail.com  14
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT 
+    name, 
+    email, 
+    LENGTH(email) AS min_email_length
+FROM customer
+ORDER BY LENGTH(email) ASC
+LIMIT 1;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1109" height="409" alt="image" src="https://github.com/user-attachments/assets/3fc8c06a-c8f8-4dab-b77d-af0de009d967" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write the SQL query that achieves the selection of category and calculates the sum of the product of price and category ID as Revenue for each category from the "products" table, and includes only those products where the total revenue is greater than 25.
+
+Sample table: products
+
+
+
+For example:
+
+Result
+category_id  Revenue
+-----------  ----------
+1            49.5
+2            126
+3            79.44
 
 ```sql
--- Paste your SQL code below for Question 8
+SELECT 
+    category_id,
+    SUM(price * category_id) AS Revenue
+FROM products
+GROUP BY category_id
+HAVING SUM(price * category_id) > 25;
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="705" height="488" alt="image" src="https://github.com/user-attachments/assets/1d009d5f-1020-4f85-9c2e-2a15ecea8ca4" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Which cities (addresses) in the "customer1" table have an average salary lesser than Rs. 15000
+
+Sample table: customer1
+
+
+
+For example:
+
+Result
+address     AVG(salary)
+----------  -----------
+Ahmedabad   2000.0
+Bhopal      8500.0
+Delhi       1500.0
+Hyderabad   4500.0
+Indore      10000.0
+Kota        2000.0
+Mumbai      6500.0
 
 ```sql
--- Paste your SQL code below for Question 9
+SELECT 
+    address,
+    AVG(salary) AS "AVG(salary)"
+FROM customer1
+GROUP BY address
+HAVING AVG(salary) < 15000;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="695" height="601" alt="image" src="https://github.com/user-attachments/assets/aa2ed271-a21a-4a0a-a458-a35a6a7b7a40" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write the SQL query that achieves the grouping of data by age, calculates the minimum income for each age group, and includes only those age groups where the minimum income is less than 1,000,000.
+
+Sample table: employee
+
+
+
+For example:
+
+Result
+age         Income
+----------  ----------
+32          200000
+40          350000
+45          450000
 
 ```sql
--- Paste your SQL code below for Question 10
+SELECT 
+    age,
+    MIN(Income) AS Income
+FROM employee
+GROUP BY age
+HAVING MIN(Income) < 1000000;
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="610" height="494" alt="image" src="https://github.com/user-attachments/assets/36ae0b88-c3f6-4b40-a8fc-3722ffbef106" />
+
 
 
 ## RESULT
