@@ -1,4 +1,4 @@
-# Experiment 9: PL/SQL – Procedures and Functions
+a# Experiment 9: PL/SQL – Procedures and Functions
 
 ## AIM
 To understand and implement procedures and functions in PL/SQL for performing various operations such as calculations, decision-making, and looping.
@@ -16,7 +16,7 @@ A PL/SQL **procedure** is a subprogram that performs a specific action. It does 
 ```sql
 CREATE OR REPLACE PROCEDURE procedure_name (parameters)
 IS
-BEGIN
+BEGI
    -- statements
 END;
 ```
