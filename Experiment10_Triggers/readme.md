@@ -32,6 +32,7 @@ END;
 
 **Expected Output:**
 - A new entry is added to the `employee_log` table each time a new record is inserted into the `employees` table.
+<img width="721" height="794" alt="image" src="https://github.com/user-attachments/assets/715ee49d-f898-496b-b164-e3ae6614f516" />
 
 ---
 
@@ -42,6 +43,7 @@ END;
 
 **Expected Output:**
 - If an attempt is made to delete a record from `sensitive_data`, an error message is raised, e.g., `ERROR: Deletion not allowed on this table.`
+<img width="725" height="136" alt="image" src="https://github.com/user-attachments/assets/db808748-6973-43cb-971c-d9e4b401308c" />
 
 ---
 
@@ -52,6 +54,7 @@ END;
 
 **Expected Output:**
 - The `last_modified` column in the `products` table is updated automatically to the current date and time when any record is updated.
+<img width="697" height="534" alt="image" src="https://github.com/user-attachments/assets/82842ba1-bc2d-4280-b28b-f59519b7f26a" />
 
 ---
 
@@ -62,6 +65,7 @@ END;
 
 **Expected Output:**
 - The `audit_log` table will maintain a count of how many updates have been made to the `customer_orders` table.
+<img width="664" height="441" alt="image" src="https://github.com/user-attachments/assets/668f17d7-c52c-49e2-b391-2dcfdc21a316" />
 
 ---
 
@@ -72,6 +76,9 @@ END;
 
 **Expected Output:**
 - If the inserted salary in the `employees` table is below the condition (e.g., salary < 3000), the insert operation is blocked, and an error message is raised, such as: `ERROR: Salary below minimum threshold.`
+<img width="721" height="429" alt="image" src="https://github.com/user-attachments/assets/784ff548-2474-42d1-a611-4679546571b6" />
 
 ## RESULT
 Thus, the PL/SQL trigger programs were written and executed successfully.
+
+
